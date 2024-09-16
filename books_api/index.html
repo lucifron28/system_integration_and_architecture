@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Books</title>
+</head>
+<body>
+    <form id="bookForm">
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required>
+        <br>
+        <label for="title">Book Title:</label>
+        <input type="text" id="title" name="title" required>
+        <br>
+        <label for="publisher">Publisher (optional):</label>
+        <input type="text" id="publisher" name="publisher">
+        <br>
+        <button type="submit">Search</button>
+    </form>
+
+    <div id="results" class="container"></div>
+    
+
+
+    <script src="script.js"></script>
+</body>
+</html>
