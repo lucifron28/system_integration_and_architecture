@@ -22,11 +22,13 @@ document.getElementById('bookForm').addEventListener('submit', async function(ev
             const description = book.description ? book.description : 'No Description Available';
             const truncatedDescription = description.length > 100 ? description.substring(0, 100) + '...' : description;
             const bookPublisher = book.publisher ? book.publisher : 'Unknown Publisher';
+            const bookCategories = book.categories ? book.categories.join(', ') : 'Unknown Category';
             bookDiv.classList.add('book');
             bookDiv.innerHTML = `
                 <h3>${book.title}</h3>
                 <p>${book.authors ? book.authors.join(', ') : 'Unknown Author'}</p>
                 <p>Publisher: ${bookPublisher}</p>
+                <p>Categories: ${bookCategories}</p>
                 <img src="${thumbnail}" alt="Book Thumbnail">
                 <p class="truncated-description">${truncatedDescription}</p>
                 <p class="description">${description}</p>
