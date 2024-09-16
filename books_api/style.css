@@ -9,7 +9,6 @@ body {
     background-image: url(images/bg.jpg);
     background-size: cover;
     background-position: center;
-
     color: #fff;
 }
 
@@ -31,7 +30,7 @@ form input {
 form button {
     padding: 10px;
     font-size: 1.2em;
-    background-color: #333;
+    background-color: #412508;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -40,10 +39,46 @@ form button {
     border-radius: 10px;
 }
 
+form button:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+form button:active {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
+}
+
+.book {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.book img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.book .description {
+    display: none;
+}
+
+.book .read-more {
+    color: #00f;
+    cursor: pointer;
+}
+
+.book .truncated-description {
+    display: block;
 }
