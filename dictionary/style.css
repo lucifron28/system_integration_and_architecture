@@ -37,6 +37,7 @@ button {
 #results {
 	text-align: left;
 	margin-top: 20px;
+	overflow-y: auto;
 }
 
 .definition {
