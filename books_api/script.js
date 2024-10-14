@@ -9,8 +9,8 @@ document.getElementById('bookForm').addEventListener('submit', async function(ev
     if (author) query += `inauthor:${author}`;
     if (title) query += `+intitle:${title}`;
     if (publisher) query += `+inpublisher:${publisher}`;
-    query += `&key=AIzaSyCMb5zd7pu9kJE14Txu_r123A2E83yc8vY`; // Add API key here
-    
+    query += `&key=AIzaSyCMb5zd7pu9kJE14Txu_r123A2E83yc8vY`;
+    console.log('Query:', query);
     try {
         const response = await fetch(query);
         if (!response.ok) {
@@ -66,20 +66,73 @@ document.getElementById('bookForm').addEventListener('submit', async function(ev
             shareButton.addEventListener('click', async () => {
                 const webhookUrl = 'https://mseufeduph.webhook.office.com/webhookb2/8ef714f6-81de-4b42-ad2e-c262d5ce04d1@ddedb3cc-596d-482b-8e8c-6cc149a7a7b7/IncomingWebhook/9ef0b875219140eb8135437505a9d31c/e0510d66-17c3-43f4-a3ef-0cf6a6fba189/V24duT1GXj0kuDCkgbXHPSG6tCe2ZunOnaM30gWrZrYuo1';
                 const payload = {
-                    text: `Book Title: ${book.title}\nAuthor: ${book.authors ? book.authors.join(', ') : 'Unknown Author'}\nPublisher: ${bookPublisher}\nCategories: ${bookCategories}\nDescription: ${description}`
+                    type: "message",
+                    attachments: [
+                        {
+                            contentType: "application/vnd.microsoft.card.adaptive",
+                            contentUrl: null,
+                            content: {
+                                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                                "type": "AdaptiveCard",
+                                "version": "1.3",
+                                "body": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": book.title,
+                                        "weight": "Bolder",
+                                        "size": "Medium",
+                                        "wrap": true,
+                                        "horizontalAlignment": "Center",
+                                        "spacing": "Medium"
+                                    },
+                                    {
+                                        "type": "TextBlock",
+                                        "text": `Author: ${book.authors ? book.authors.join(', ') : 'Unknown Author'}`,
+                                        "wrap": true,
+                                        "spacing": "Small"
+                                    },
+                                    {
+                                        "type": "TextBlock",
+                                        "text": `Publisher: ${bookPublisher}`,
+                                        "wrap": true,
+                                        "spacing": "Small"
+                                    },
+                                    {
+                                        "type": "TextBlock",
+                                        "text": `Categories: ${bookCategories}`,
+                                        "wrap": true,
+                                        "spacing": "Small"
+                                    },
+                                    {
+                                        "type": "Image",
+                                        "url": thumbnail,
+                                        "altText": "Book Thumbnail",
+                                        "size": "Auto",
+                                        "horizontalAlignment": "Center",
+                                        "spacing": "Medium"
+                                    }
+                                ],
+                                "actions": [
+                                    {
+                                        "type": "Action.OpenUrl",
+                                        "title": "View Book",
+                                        "url": book.infoLink,
+                                    }
+                                ]
+                            }
+                        }
+                    ]
                 };
+                console.log(payload);
                 try {
                     const webhookResponse = await fetch(webhookUrl, {
                         method: 'POST',
+                        mode: 'no-cors',
                         body: JSON.stringify(payload)
                     });
-                    if (!webhookResponse.ok) {
-                        throw new Error(`Webhook error! status: ${webhookResponse.status}`);
-                    }
                     alert('Book details shared successfully!');
                 } catch (webhookError) {
                     console.error('Error sharing book details:', webhookError);
-                    alert('Error sharing book details. Please try again later.');
                 }
             });
         });
