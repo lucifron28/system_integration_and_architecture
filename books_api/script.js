@@ -33,6 +33,7 @@ document.getElementById('bookForm').addEventListener('submit', async function(ev
             const truncatedDescription = description.length > 100 ? description.substring(0, 100) + '...' : description;
             const bookPublisher = book.publisher ? book.publisher : 'Unknown Publisher';
             const bookCategories = book.categories ? book.categories.join(', ') : 'Unknown Category';
+            const textSnippet = item.searchInfo ? item.searchInfo.textSnippet : 'No snippet available.';
             bookDiv.classList.add('book');
             bookDiv.innerHTML = `
                 <h3>${book.title}</h3>
@@ -110,6 +111,12 @@ document.getElementById('bookForm').addEventListener('submit', async function(ev
                                         "size": "Auto",
                                         "horizontalAlignment": "Center",
                                         "spacing": "Medium"
+                                    },
+                                    {
+                                        "type": "TextBlock",
+                                        "text": textSnippet,
+                                        "wrap": true,
+                                        "spacing": "Small"
                                     }
                                 ],
                                 "actions": [
