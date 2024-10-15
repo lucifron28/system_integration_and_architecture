@@ -4,7 +4,12 @@ document.getElementById('bookForm').addEventListener('submit', async function(ev
     const author = document.getElementById('author').value;
     const title = document.getElementById('title').value;
     const publisher = document.getElementById('publisher').value;
-    
+
+    if (!author && !title && !publisher) {
+        alert('Please enter at least one search criteria.');
+        return;
+    }
+
     let query = `https://www.googleapis.com/books/v1/volumes?q=`;
     if (author) query += `inauthor:${author}`;
     if (title) query += `+intitle:${title}`;
@@ -81,7 +86,7 @@ document.getElementById('bookForm').addEventListener('submit', async function(ev
                                         "type": "TextBlock",
                                         "text": book.title,
                                         "weight": "Bolder",
-                                        "size": "Medium",
+                                        "size": "extraLarge",
                                         "wrap": true,
                                         "horizontalAlignment": "Center",
                                         "spacing": "Medium"
@@ -140,6 +145,7 @@ document.getElementById('bookForm').addEventListener('submit', async function(ev
                     alert('Book details shared successfully!');
                 } catch (webhookError) {
                     console.error('Error sharing book details:', webhookError);
+                    alert('Error sharing book details. Please try again later.');
                 }
             });
         });
