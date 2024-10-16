@@ -41,7 +41,7 @@ document.getElementById('bookForm').addEventListener('submit', async function(ev
             const textSnippet = item.searchInfo ? item.searchInfo.textSnippet : 'No snippet available.';
             bookDiv.classList.add('book');
             bookDiv.innerHTML = `
-                <h3>${book.title}</h3>
+                <div class="title-share"><h3>${book.title}</h3><button class="share-button">Share</button></div>
                 <p>${book.authors ? book.authors.join(', ') : 'Unknown Author'}</p>
                 <p>Publisher: ${bookPublisher}</p>
                 <p>Categories: ${bookCategories}</p>
@@ -49,7 +49,6 @@ document.getElementById('bookForm').addEventListener('submit', async function(ev
                 <p class="truncated-description">${truncatedDescription}</p>
                 <p class="description">${description}</p>
                 <span class="read-more">Read More</span>
-                <button class="share-button">Share</button>
             `;
             resultsDiv.appendChild(bookDiv);
 

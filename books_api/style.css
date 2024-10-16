@@ -138,3 +138,10 @@ form button:active {
 .share-button:active {
     background-color: rgb(0, 0, 0);
 }
+
+.title-share {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
