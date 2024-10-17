@@ -128,6 +128,11 @@ document.getElementById('bookForm').addEventListener('submit', async function(ev
                                         "type": "Action.OpenUrl",
                                         "title": "View Book",
                                         "url": book.infoLink,
+                                    },
+                                    {
+                                        "type": "Action.OpenUrl",
+                                        "title": "View Website",
+                                        "url": "https://lucifron28.github.io/system_integration_and_architecture/books_api",
                                     }
                                 ]
                             }
