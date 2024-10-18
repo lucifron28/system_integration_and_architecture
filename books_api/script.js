@@ -126,7 +126,7 @@ document.getElementById('bookForm').addEventListener('submit', async function(ev
                                 "actions": [
                                     {
                                         "type": "Action.OpenUrl",
-                                        "title": "View Book",
+                                        "title": "Read Book",
                                         "url": book.infoLink,
                                     },
                                     {
